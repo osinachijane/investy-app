@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif !important;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+}
+
+hr {
+  margin: 10px 0 30px;
+  border: none;
+  border-bottom: 1px solid #c1bcbc;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  padding-right: 20px;
+  padding-top: 50px;
+}
+
+.left .btn {
+  margin-top: 30px;
+}
+
+.left p {
+  font-size: 18px;
+}
+
+.card {
+  border: 1px solid #0505050f;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.btn,
+.btn:hover {
+  background-color: #0055ba !important;
+}
+
+.unlink {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.box {
+  width: 600px;
+  background-color: #f6f6f6;
+  color: #000;
+  padding: 40px 20px 10px;
+  min-height: 295px;
+  max-height: 500px;
+  /* height: 500px; */
+  overflow: scroll;
+  border-radius: 5px;
+}
+
+.box {
+  margin-bottom: 15px;
+}
+
+li {
+  list-style: disc;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+li span {
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.details {
+  display: flex;
+  gap: 50px;
+  margin-top: 10px;
+}
+
+.details li {
+  list-style: none;
+}
+
+hr.hr2 {
+  border: none;
+  border-bottom: 1px dashed #000;
+  margin-bottom: 0;
+}
+
+hr.hr3 {
+  border: none;
+  border-bottom: 1px dashed #000;
+  margin-bottom: 30px;
+}
+
+.mt-100 {
+  margin-top: 20px;
+}
+
+.bottom {
+  margin-top: 30px;
+}
+
+.ant-tabs {
+  line-height: normal !important;
+}
+
+.ant-tabs .ant-tabs-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px !important;
+  font-size: 14px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.ant-tabs .ant-tabs-tab-active {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px !important;
+  font-size: 14px;
+  background: #000 !important;
+  border: 0;
+  border-radius: 100px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ant-tabs .ant-tabs-tab:hover,
+.ant-tabs .ant-tabs-tab:active,
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active:active {
+  color: #000 !important;
+}
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fff;
+  text-shadow: 0 0 0.25px currentcolor;
+}
+
+.ant-tabs-ink-bar {
+  background-color: transparent !important;
+}
+
+.ant-tabs .ant-tabs-tab + .ant-tabs-tab {
+  margin: 0;
+}
+
+.ant-tabs-top > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-1km3mtt).ant-tabs-top
+  > div
+  > .ant-tabs-nav::before {
+  display: none;
+}
