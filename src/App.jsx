@@ -33,9 +33,7 @@ function App() {
         const options = {
           method: "POST",
           headers: {
-            Accept: "application/json",
             "Content-Type": "application/json",
-            "mono-sec-key": VITE__SECRET_KEY,
           },
           body: JSON.stringify({ code }),
         };
@@ -61,11 +59,6 @@ function App() {
   const getAccountInfo = (_id) => {
     const options = {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "mono-sec-key": VITE__SECRET_KEY,
-      },
     };
     fetch(`${VITE__API_ENDPOINT}/accounts/${_id}`, options)
       .then((response) => response.json())
@@ -73,6 +66,7 @@ function App() {
         const new_account = {};
         new_account.name = response.account.name;
         new_account.company = response.account.institution.name;
+        new_account.data_status = response.meta.data_status;
 
         // STORE SUCCESSFULLY LINKED ACCOUNTS IN LOCAL STORAGE
         setLinkedAccounts((prev) => {
@@ -89,11 +83,6 @@ function App() {
   const getAssetData = (_id) => {
     const options = {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "mono-sec-key": VITE__SECRET_KEY,
-      },
     };
     fetch(`${VITE__API_ENDPOINT}/accounts/${_id}/assets`, options)
       .then((response) => response.json())
@@ -112,11 +101,6 @@ function App() {
   const getEarningsData = (_id) => {
     const options = {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "mono-sec-key": VITE__SECRET_KEY,
-      },
     };
     fetch(`${VITE__API_ENDPOINT}/accounts/${_id}/earnings`, options)
       .then((response) => response.json())
@@ -168,16 +152,21 @@ function App() {
       key: "account",
     },
     {
-      title: "Action",
-      key: "action",
-      render: (_, record) => {
-        return (
-          <Tag key={record.account} className="unlink">
-            Unlink Account
-          </Tag>
-        );
-      },
+      title: "Data Status",
+      dataIndex: "data_status",
+      key: "data_status",
     },
+    // {
+    //   title: "Action",
+    //   key: "action",
+    //   render: (_, record) => {
+    //     return (
+    //       <Tag key={record.account} className="unlink">
+    //         Unlink Account
+    //       </Tag>
+    //     );
+    //   },
+    // },
   ];
 
   const tableDataStorage =
@@ -188,6 +177,7 @@ function App() {
       key: String(i + 1),
       name: item.name,
       account: item.company,
+      data_status: item.data_status,
       date_linked: "February 17, 2023",
     };
   });
@@ -244,6 +234,9 @@ const Assets = ({ data }) => {
           const purchase_amt = (item.cost / 100) * item.quantity;
           return (
             <Fragment key={i}>
+              <span>S/N: {i + 1}</span>
+              <br />
+
               <li>
                 <span>Name: </span> {item.name}
               </li>
@@ -271,8 +264,7 @@ const Assets = ({ data }) => {
                   <span>Price: </span> {item.details.price?.toLocaleString()}
                 </li> */}
                 <li>
-                  <span>Purchase Amount: </span>{" "}
-                  {purchase_amt?.toLocaleString()}
+                  <span>Total Cost: </span> {purchase_amt?.toLocaleString()}
                 </li>
               </div>
 
@@ -294,6 +286,8 @@ const Earnings = ({ data }) => {
         {(data.length &&
           data?.map((item, i) => (
             <Fragment key={i}>
+              <span>S/N: {i + 1}</span>
+              <br />
               <li>
                 <span>Amount: </span> {(item.amount / 100)?.toLocaleString()}
               </li>
@@ -336,7 +330,7 @@ const Total = ({ totalPurchaseAmount, totalEarnings }) => {
     <div className="box">
       <h1>Assets</h1>
       <h3>
-        Total Purchase Amount:
+        Total Cost:
         <span> USD {totalPurchaseAmount?.toLocaleString()}</span>
       </h3>
       <br />
